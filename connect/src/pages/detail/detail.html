@@ -35,6 +35,31 @@
       <pre>{{peripheral | json }}</pre>
     </ion-card-content>
   </ion-card>
+
+  <ion-card>
+    <ion-list>
+      <ion-list-header>Characteristics</ion-list-header>
+      <ion-item 
+        *ngFor="let char of peripheral.characteristics" 
+        (click)="initNotification(char.service, char.characteristic)" 
+        (press)="readCharacteristic(char.service, char.characteristic)"
+        (swipe)="write(char.service, char.characteristic)"
+      >
+        <h2>{{char.service}} {{char.characteristic}}</h2>
+        <p>{{char.properties}}</p>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+  <ion-card>
+    <ion-list text-wrap>
+      <ion-list-header>Data</ion-list-header>
+      <ion-item *ngFor="let data of outputData">
+        {{data}}
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
 </ion-content>
 
 <ion-footer>
